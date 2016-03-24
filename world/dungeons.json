@@ -1,0 +1,18 @@
+{
+	"dungeons": [
+		{
+			"name": "Tiny Woods",
+			"name-de": "Kleinhein",
+			"floors": 3,
+			"monsters": [
+				{
+					"name": "Pidgey",
+					"levelmin": 1,
+					"levelmax": 3,
+					"floormin": 1,
+					"floormax": 3
+				}
+			]
+		}
+	]
+}

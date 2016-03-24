@@ -3,6 +3,10 @@
 const Base = require('./classes/Base.class.js');
 const BaseDomain = require('./domains/BaseDomain.class.js');
 
+const Loader = require('./Loader.js');
+
+var world = Loader.loadWorld('world/');
+
 var root = {};
 root.bases = [];
 var base = new Base();
@@ -16,7 +20,7 @@ var c = {};
 c.domain = 'Base';
 
 c.completer = function(linePartial, callback) {
-	var completions = 'name ,base name ,go base ,go areals '.split(',');
+	var completions = 'name ,base name ,go base ,go areals ,debug monsterclasses ,debug dungeons '.split(',');
 	var hits = completions.filter((c) => { return c.indexOf(linePartial) == 0 });
 	// show all completions if none found
 	callback(null, [hits.length ? hits : completions, linePartial]);
@@ -39,6 +43,12 @@ c.onLine = function(line) {
 			break;
 		case 'go areals':
 			c.domain = 'Areals';
+			break;
+		case 'debug dungeons':
+			console.log( world.dungeons );
+			break;
+		case 'debug monsterclasses':
+			console.log( world.monsterclasses );
 			break;
 		default:
 			console.log('Say what? I might have heard `' + line.trim() + '`');

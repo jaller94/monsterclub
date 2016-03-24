@@ -1,0 +1,39 @@
+{
+	
+	"monsterclasses": [
+		{
+			"no": 1,
+			"name": "Bulbasaur",
+			"name-de": "Bisasam",
+			"size": 1,
+			"recruitrate": 12.5,
+			"moves": [
+				{"level": 1, "name": "Tackle"},
+				{"level": 4, "name": "Growl"},
+				{"level": 7, "name": "Leech Seed"},
+				{"level": 10, "name": "Vine Whip"},
+				{"level": 15, "name": "Poison Powder"},
+				{"level": 15, "name": "Sleep Powder"},
+				{"level": 20, "name": "Razor Leaf"}
+			]
+		},
+		{
+			"no": 16,
+			"name": "Pidgey",
+			"name-de": "Taubsi",
+			"size": 1,
+			"recruitrate": 12.5,
+			"moves": [
+				{"level": 1, "name": "Tackle"},
+				{"level": 5, "name": "Sand-Attack"},
+				{"level": 9, "name": "Gust"},
+				{"level": 13, "name": "Quick Attack"},
+				{"level": 19, "name": "Whirlwind"},
+				{"level": 25, "name": "Wing Attack"},
+				{"level": 31, "name": "Feather Dance"},
+				{"level": 39, "name": "Agility"},
+				{"level": 47, "name": "Mirror Move"}
+			]
+		}
+	]
+}
