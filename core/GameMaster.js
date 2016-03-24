@@ -2,6 +2,8 @@
 
 const Base = require('./classes/Base.class.js');
 const BaseDomain = require('./domains/BaseDomain.class.js');
+const Monster = require('./classes/Monster.class.js');
+const MonsterClass = require('./classes/MonsterClass.class.js');
 
 const Loader = require('./Loader.js');
 
@@ -20,7 +22,7 @@ var c = {};
 c.domain = 'Base';
 
 c.completer = function(linePartial, callback) {
-	var completions = 'name ,base name ,go base ,go areals ,debug monsterclasses ,debug dungeons '.split(',');
+	var completions = 'name ,base name ,go base ,go areals ,debug monsterclasses ,debug dungeons ,recruit bulbasaur ,recruit pidgey ,monsters ,base monsters'.split(',');
 	var hits = completions.filter((c) => { return c.indexOf(linePartial) == 0 });
 	// show all completions if none found
 	callback(null, [hits.length ? hits : completions, linePartial]);
@@ -49,6 +51,12 @@ c.onLine = function(line) {
 			break;
 		case 'debug monsterclasses':
 			console.log( world.monsterclasses );
+			break;
+		case 'recruit bulbasaur':
+			var bulbasaurClass = world.monsterclasses[0];
+			var monster = Monster.generate( bulbasaurClass, 5 );
+			monster.setName( 'Bisa' );
+			base.addMonster( monster );
 			break;
 		default:
 			console.log('Say what? I might have heard `' + line.trim() + '`');

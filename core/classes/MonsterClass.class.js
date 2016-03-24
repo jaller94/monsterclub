@@ -1,6 +1,6 @@
 'use strict';
 
-class c {
+class MonsterClass {
 	constructor( json ) {
 		this.d = json;
 	}
@@ -14,4 +14,4 @@ class c {
 	}
 }
 
-module.exports = c;
+module.exports = MonsterClass;

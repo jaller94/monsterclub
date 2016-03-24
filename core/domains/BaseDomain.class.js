@@ -10,6 +10,9 @@ class c {
 			case 'name':
 				console.log( this.base.getName() );
 				return 1;
+			case 'monsters':
+				//TODO Format the output
+				console.log( this.base.getMonsters() );
 		}
 	}
 }
