@@ -58,6 +58,12 @@ c.onLine = function(line) {
 			monster.setName( 'Bisa' );
 			base.addMonster( monster );
 			break;
+		case 'recruit pidgey':
+			var bulbasaurClass = world.monsterclasses[1];
+			var monster = Monster.generate( bulbasaurClass, 3 );
+			monster.setName( 'Taubs' );
+			base.addMonster( monster );
+			break;
 		default:
 			console.log('Say what? I might have heard `' + line.trim() + '`');
 			break;
