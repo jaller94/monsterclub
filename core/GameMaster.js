@@ -13,7 +13,7 @@ base.setName('Paul Base');
 var c = {};
 
 //TODO Set another default
-c.domain = "Base";
+c.domain = 'Base';
 
 c.completer = function(linePartial, callback) {
 	var completions = 'name ,base name ,go base ,go areals '.split(',');
@@ -24,7 +24,7 @@ c.completer = function(linePartial, callback) {
 
 c.onLine = function(line) {
 	line = line.trim();
-	if (c.domain == "Base") {
+	if (c.domain == 'Base') {
 		var basedomain = new BaseDomain( base );
 		basedomain.process( line );
 	}
@@ -32,11 +32,13 @@ c.onLine = function(line) {
 		case 'base name':
 			console.log( base.getName() );
 			break;
+		case 'go':
+			console.log('Go where?');
 		case 'go base':
-			c.domain = "Base";
+			c.domain = 'Base';
 			break;
 		case 'go areals':
-			c.domain = "Areals";
+			c.domain = 'Areals';
 			break;
 		default:
 			console.log('Say what? I might have heard `' + line.trim() + '`');
