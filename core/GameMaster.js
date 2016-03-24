@@ -17,12 +17,9 @@ c.domain = "Base";
 
 c.completer = function(linePartial, callback) {
 	var completions = 'name ,base name ,go base ,go areals '.split(',');
-	if (linePartial == 'b') {
-		var completions = 'base name '.split(',');
-	}
 	var hits = completions.filter((c) => { return c.indexOf(linePartial) == 0 });
 	// show all completions if none found
-	callback(null, [completions, linePartial]);
+	callback(null, [hits.length ? hits : completions, linePartial]);
 }
 
 c.onLine = function(line) {
