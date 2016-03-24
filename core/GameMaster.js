@@ -22,7 +22,7 @@ var c = {};
 c.domain = 'Base';
 
 c.completer = function(linePartial, callback) {
-	var completions = 'name ,base name ,go base ,go areals ,debug monsterclasses ,debug dungeons ,recruit bulbasaur ,recruit pidgey ,monsters ,base monsters'.split(',');
+	var completions = 'name ,base name ,go base ,go shop ,debug monsterclasses ,debug dungeons ,recruit bulbasaur ,recruit pidgey ,monsters ,base monsters'.split(',');
 	var hits = completions.filter((c) => { return c.indexOf(linePartial) == 0 });
 	// show all completions if none found
 	callback(null, [hits.length ? hits : completions, linePartial]);
@@ -43,8 +43,8 @@ c.onLine = function(line) {
 		case 'go base':
 			c.domain = 'Base';
 			break;
-		case 'go areals':
-			c.domain = 'Areals';
+		case 'go shop':
+			c.domain = 'Shop';
 			break;
 		case 'debug dungeons':
 			console.log( world.dungeons );
