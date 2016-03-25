@@ -1,23 +1,36 @@
 'use strict';
 
-class c {
+const Domain = require('./Domain.class.js');
+
+class DebugDomain extends Domain {
 	constructor( root, base ) {
-		this.root = root;
+		super( root, base );
 		this.world = root.world;
-		this.base = base;
+	}
+
+	getShortName() {
+		return 'Debug';
 	}
 
 	process( line ) {
-		switch(line.trim()) {
+		var args = Domain.parseArgs(line);
+		switch(args[0]) {
 			case 'dungeons':
 				console.log( world.dungeons );
 				return 1;
-			case 'debug monsterclasses':
+			case 'monsterclasses':
 				console.log( world.monsterclasses );
 				return 1;
 		}
 		return false;
 	}
+
+	completer( line ) {
+		var completions = 'dungeons monsterclasses'.split(' ');
+		var hits = completions.filter((c) => { return c.indexOf(line) == 0 });
+		// show all completions if none found
+		return [hits.length ? hits : completions, line];
+	}
 }
 
-module.exports = c;
+module.exports = DebugDomain;

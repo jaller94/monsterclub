@@ -1,19 +1,26 @@
 'use strict';
 
-class c {
+const Domain = require('./Domain.class.js');
+
+class ShopDomain extends Domain {
 	constructor( root, base ) {
-		this.base = base;
+		super( root, base );
+	}
+
+	getShortName() {
+		return '\x1b[33mShop\x1b[0m';
 	}
 
 	process( line ) {
-		switch(line.trim()) {
+		var args = Domain.parseArgs(line);
+		switch(args[0]) {
 			case 'buy':
 				//TODO not implemented
-				console.log( "This feature has not been implemented!" );
+				console.log( 'This feature has not been implemented!' );
 				return 1;
 			case 'sell':
 				//TODO not implemented
-				console.log( "This feature has not been implemented!" );
+				console.log( 'This feature has not been implemented!' );
 				return 1;
 		}
 		return false;
@@ -27,4 +34,4 @@ class c {
 	}
 }
 
-module.exports = c;
+module.exports = ShopDomain;

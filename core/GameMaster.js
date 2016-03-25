@@ -26,14 +26,17 @@ base.setName('Paul Base');
 var c = {};
 
 //TODO Set another default
-c.domain = 'Base';
+c.domain = new BaseDomain( root, base );
+c.gdomain = new GlobalDomain( root, base );
 
 c.completer = function(linePartial, callback) {
-	var completions = 'name ,base name ,go base ,go shop ,debug monsterclasses ,debug dungeons ,recruit bulbasaur ,recruit pidgey ,monsters ,base monsters'.split(',');
+	var completions = [];
 	var hits = completions.filter((c) => { return c.indexOf(linePartial) == 0 });
-	if (c.domain == 'Shop') {
-		var shopdomain = new ShopDomain( root, base );
-		completions = shopdomain.completer( linePartial )[0];
+	if (c.domain) {
+		// Call local completer
+		completions = c.domain.completer( linePartial )[0];
+		// Call global completer
+		completions = completions.concat( c.gdomain.completer( linePartial )[0] );
 		callback(null, [completions, linePartial]);
 		return true;
 	}
@@ -45,24 +48,12 @@ c.onLine = function(line) {
 	line = line.trim();
 	var processed = false;
 	
-	if (c.domain == 'Base' && !processed) {
-		var domain = new BaseDomain( root, base );
-		processed = domain.process( line );
-	}
-
-	if (c.domain == 'Shop' && !processed) {
-		var domain = new ShopDomain( root, base );
-		processed = domain.process( line );
-	}
-
-	if (c.domain == 'Debug' && !processed) {
-		var domain = new DebugDomain( root, base );
-		processed = domain.process( line );
+	if (c.domain) {
+		processed = c.domain.process( line );
 	}
 
 	if (!processed) {
-		var domain = new GlobalDomain( root, base );
-		processed = domain.process( line );
+		processed = c.gdomain.process( line );
 	}
 
 	if (!processed) {
@@ -71,13 +62,13 @@ c.onLine = function(line) {
 			case 'go':
 				console.log('Go where?');
 			case 'go base':
-				c.domain = 'Base';
+				c.domain = new BaseDomain( root, base );
 				break;
 			case 'go debug':
-				c.domain = 'Debug';
+				c.domain = new DebugDomain( root, base );
 				break;
 			case 'go shop':
-				c.domain = 'Shop';
+				c.domain = new ShopDomain( root, base );
 				break;
 			default:
 				processed = false;
