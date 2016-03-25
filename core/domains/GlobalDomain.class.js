@@ -2,9 +2,14 @@
 
 const Domain = require('./Domain.class.js');
 
+const Base = require('../classes/Base.class.js');
+const Monster = require('../classes/Monster.class.js');
+const MonsterClass = require('../classes/MonsterClass.class.js');
+
 class GlobalDomain extends Domain {
 	constructor( root, base ) {
 		super( root, base );
+		this.world = root.world;
 	}
 
 	getShortName() {
@@ -18,21 +23,19 @@ class GlobalDomain extends Domain {
 				var monster;
 				switch(args[1]) {
 					case 'bulbasaur':
-						var bulbasaurClass = world.monsterclasses[0];
+						var bulbasaurClass = this.world.monsterclasses[0];
 						monster = Monster.generate( bulbasaurClass, 5 );
 						monster.setName( 'Bisa' );
 						break;
 					case 'pidgey':
-						var bulbasaurClass = world.monsterclasses[1];
-						monster = Monster.generate( bulbasaurClass, 3 );
+						var pidgeyClass = this.world.monsterclasses[1];
+						monster = Monster.generate( pidgeyClass, 3 );
 						monster.setName( 'Taubs' );
+						break;
 					default:
 						console.log('There is no such MonsterClass!');
 						return 1;
 				}
-				this.base.addMonster( monster );
-				return 1;
-			case 'recruit pidgey':
 				this.base.addMonster( monster );
 				return 1;
 		}
@@ -40,10 +43,10 @@ class GlobalDomain extends Domain {
 	}
 
 	completer( line ) {
-		var completions = 'recruit bulbasaur, recruit pidgey ,go base ,go debug ,go shop '.split(',');
+		var completions = 'recruit bulbasaur ,recruit pidgey ,go base ,go debug ,go shop '.split(',');
 		var hits = completions.filter((c) => { return c.indexOf(line) == 0 });
 		// show all completions if none found
-		return [hits.length ? hits : completions, line];
+		return [hits, line];
 	}
 }
 

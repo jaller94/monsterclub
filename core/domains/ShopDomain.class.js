@@ -30,7 +30,7 @@ class ShopDomain extends Domain {
 		var completions = 'buy sell'.split(' ');
 		var hits = completions.filter((c) => { return c.indexOf(line) == 0 });
 		// show all completions if none found
-		return [hits.length ? hits : completions, line];
+		return [hits, line];
 	}
 }
 

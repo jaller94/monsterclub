@@ -2,6 +2,10 @@
 
 const Domain = require('./Domain.class.js');
 
+const Base = require('../classes/Base.class.js');
+const Monster = require('../classes/Monster.class.js');
+const MonsterClass = require('../classes/MonsterClass.class.js');
+
 class BaseDomain extends Domain {
 	constructor( root, base ) {
 		super( root, base );
@@ -36,7 +40,7 @@ class BaseDomain extends Domain {
 		var completions = 'name monsters'.split(' ');
 		var hits = completions.filter((c) => { return c.indexOf(line) == 0 });
 		// show all completions if none found
-		return [hits.length ? hits : completions, line];
+		return [hits, line];
 	}
 }
 

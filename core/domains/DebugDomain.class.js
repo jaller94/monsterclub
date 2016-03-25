@@ -16,10 +16,10 @@ class DebugDomain extends Domain {
 		var args = Domain.parseArgs(line);
 		switch(args[0]) {
 			case 'dungeons':
-				console.log( world.dungeons );
+				console.log( this.world.dungeons );
 				return 1;
 			case 'monsterclasses':
-				console.log( world.monsterclasses );
+				console.log( this.world.monsterclasses );
 				return 1;
 		}
 		return false;
@@ -29,7 +29,7 @@ class DebugDomain extends Domain {
 		var completions = 'dungeons monsterclasses'.split(' ');
 		var hits = completions.filter((c) => { return c.indexOf(line) == 0 });
 		// show all completions if none found
-		return [hits.length ? hits : completions, line];
+		return [hits, line];
 	}
 }
 
