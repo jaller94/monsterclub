@@ -2,17 +2,18 @@
 
 class c {
 	constructor( root, base ) {
+		this.root = root;
+		this.world = root.world;
 		this.base = base;
 	}
 
 	process( line ) {
 		switch(line.trim()) {
-			case 'name':
-				console.log( this.base.getName() );
+			case 'dungeons':
+				console.log( world.dungeons );
 				return 1;
-			case 'monsters':
-				//TODO Format the output
-				console.log( this.base.getMonsters() );
+			case 'debug monsterclasses':
+				console.log( world.monsterclasses );
 				return 1;
 		}
 		return false;
