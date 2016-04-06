@@ -20,6 +20,23 @@ root.world = world;
 root.bases = [];
 var base = new Base();
 
+root.getDungeon = function( needle ) {
+	var dungeons = this.world.dungeons; 
+	if (dungeons == null) {
+		return null;
+	}
+	for (var i = dungeons.length - 1; i >= 0; i--) {
+		var result;
+		for (var i = dungeons.length - 1; i >= 0; i--) {
+			if (dungeons[i].getName() === needle) {
+				result = dungeons[i];
+				break;
+			}
+		}
+		return result;
+	}
+}
+
 //TODO This should be loaded from a save.
 base.setName('Paul Base');
 

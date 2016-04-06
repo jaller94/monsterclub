@@ -35,6 +35,20 @@ class Monster {
 	setName( name ) {
 		this.d.name = name;
 	}
+
+	setTeam( team ) {
+		if (this.d.team != null) {
+			return 'Already belongs to a team';
+		}
+
+		this.d.team = team;
+		return true;
+	}
+
+	clearTeam() {
+		this.d.team = null;
+		return true;
+	}
 }
 
 module.exports = Monster;

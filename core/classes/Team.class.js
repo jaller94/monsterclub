@@ -1,10 +1,10 @@
 'use strict';
 
-class Base {
-	constructor() {
+class Team {
+	constructor( base ) {
 		this.d = {};
+		this.d.base = base;
 		this.d.monsters = [];
-		this.d.activeteams = [];
 	}
 
 	json() {
@@ -12,8 +12,23 @@ class Base {
 	}
 
 	addMonster( monster ) {
-		this.d.monsters.push( monster );
+		var monsters = this.d.monsters;
+
+		if (monsters.length >= 4) {
+			return 'Team already full';
+		}
+		if (!monster.setTeam( this )) {
+			return 'Monster occupied';
+		}
+
+		monsters.push( monster );
 		return true;
+	}
+
+	dissolve() {
+		this.d.monsters.forEach( function(monster) {
+			monster.clearTeam();
+		});
 	}
 
 	getMonsters() {
@@ -39,13 +54,6 @@ class Base {
 	setName( name ) {
 		this.d.name = name;
 	}
-
-	send( team ) {
-		if (team != null) {
-			return 'Invalid team';
-		}
-		this.d.activeteams.push( team );
-	}
 }
 
-module.exports = Base;
+module.exports = Team;
