@@ -8,13 +8,13 @@ class Monster {
 	}
 
 	static load( json ) {
-		var monster = new Monster();
+		const monster = new Monster();
 		this.d = json;
 		return monster;
 	}
 
 	static generate( monsterclass, level ) {
-		var monster = new Monster();
+		const monster = new Monster();
 		monster.d.monsterclass = monsterclass;
 		monster.d.level = level;
 		return monster;

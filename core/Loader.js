@@ -8,10 +8,10 @@ const Dungeon = require('./classes/Dungeon.class.js');
 const Monster = require('./classes/Monster.class.js');
 const MonsterClass = require('./classes/MonsterClass.class.js');
 
-var c = {};
+const c = {};
 
 function loadMonsterClasses( json ) {
-	var result = [];
+	const result = [];
 	json.monsterclasses.forEach( function(monsterclass) {
 		result.push( new MonsterClass( monsterclass ) );
 	});
@@ -19,7 +19,7 @@ function loadMonsterClasses( json ) {
 }
 
 function loadDungeons( json ) {
-	var result = [];
+	const result = [];
 	json.dungeons.forEach( function(dungeon) {
 		result.push( new Dungeon( dungeon ) );
 	});
@@ -27,10 +27,10 @@ function loadDungeons( json ) {
 }
 
 c.loadWorld = function( dir ) {
-	var world = {};
+	const world = {};
 
-	var contents;
-	var jsonContent;
+	let contents;
+	let jsonContent;
 
 	// Get content from file
 	contents = fs.readFileSync( dir + "monsterclasses.json" );
@@ -45,6 +45,6 @@ c.loadWorld = function( dir ) {
 	world.dungeons = loadDungeons( jsonContent );
 
 	return world;
-}
+};
 
 module.exports = c;

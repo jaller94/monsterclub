@@ -17,20 +17,24 @@ class GlobalDomain extends Domain {
 	}
 
 	process( line ) {
-		var args = Domain.parseArgs(line);
+		const args = Domain.parseArgs(line);
 		switch(args[0]) {
 			case 'recruit':
-				var monster;
+				let monster;
+				let name;
+				if (args.length > 1 && args[2] !== '') {
+					name = args[2];
+				}
 				switch(args[1]) {
 					case 'bulbasaur':
-						var bulbasaurClass = this.world.monsterclasses[0];
+						const bulbasaurClass = this.world.monsterclasses[0];
 						monster = Monster.generate( bulbasaurClass, 5 );
-						monster.setName( 'Bisa' );
+						monster.setName( name || 'Bisa' );
 						break;
 					case 'pidgey':
-						var pidgeyClass = this.world.monsterclasses[1];
+						const pidgeyClass = this.world.monsterclasses[1];
 						monster = Monster.generate( pidgeyClass, 3 );
-						monster.setName( 'Taubs' );
+						monster.setName( name || 'Taubs' );
 						break;
 					default:
 						console.log('There is no such MonsterClass!');
@@ -38,13 +42,19 @@ class GlobalDomain extends Domain {
 				}
 				this.base.addMonster( monster );
 				return 1;
+			case 'cheat':
+				this.process('recruit bulbasaur Bisa1');
+				this.process('recruit bulbasaur Bisa2');
+				this.process('send Bisa1 Kleinhain');
+				this.process('monsters');
+				return 1;
 		}
 		return false;
 	}
 
 	completer( line ) {
-		var completions = 'recruit bulbasaur ,recruit pidgey ,go base ,go debug ,go shop '.split(',');
-		var hits = completions.filter((c) => { return c.indexOf(line) == 0 });
+		const completions = 'recruit bulbasaur ,recruit pidgey ,go base ,go debug ,go shop ,cheat '.split(',');
+		const hits = completions.filter((c) => { return c.indexOf(line) == 0 });
 		// show all completions if none found
 		return [hits, line];
 	}

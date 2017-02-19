@@ -5,6 +5,8 @@ class Team {
 		this.d = {};
 		this.d.base = base;
 		this.d.monsters = [];
+		this.d.status = 'planing';
+		this.d.dungeon = null;
 	}
 
 	json() {
@@ -36,9 +38,9 @@ class Team {
 	}
 
 	getMonster( needle ) {
-		var monsters = this.d.monsters;
-		var result;
-		for (var i = monsters.length - 1; i >= 0; i--) {
+		const monsters = this.d.monsters;
+		let result;
+		for (let i = monsters.length - 1; i >= 0; i--) {
 			if (monsters[i].getName() === needle) {
 				result = monsters[i];
 				break;

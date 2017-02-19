@@ -13,57 +13,53 @@ const ShopDomain = require('./domains/ShopDomain.class.js');
 
 const Loader = require('./Loader.js');
 
-var world = Loader.loadWorld('world/');
+const world = Loader.loadWorld('world/');
 
-var root = {};
+const root = {};
 root.world = world;
 root.bases = [];
-var base = new Base();
+const base = new Base();
 
 root.getDungeon = function( needle ) {
-	var dungeons = this.world.dungeons; 
+	const dungeons = this.world.dungeons;
 	if (dungeons == null) {
 		return null;
 	}
-	for (var i = dungeons.length - 1; i >= 0; i--) {
-		var result;
-		for (var i = dungeons.length - 1; i >= 0; i--) {
-			if (dungeons[i].getName() === needle) {
-				result = dungeons[i];
-				break;
-			}
+	let result;
+	for (let i = dungeons.length - 1; i >= 0; i--) {
+		if (dungeons[i].getName() === needle) {
+			result = dungeons[i];
+			break;
 		}
-		return result;
 	}
-}
+	return result;
+};
 
 //TODO This should be loaded from a save.
 base.setName('Paul Base');
 
-var c = {};
+const c = {};
 
 //TODO Set another default
 c.domain = new BaseDomain( root, base );
 c.gdomain = new GlobalDomain( root, base );
 
 c.completer = function(linePartial, callback) {
-	var completions = [];
-	var hits = completions.filter((c) => { return c.indexOf(linePartial) == 0 });
+	let completions = [];
+	//const hits = completions.filter((c) => { return c.indexOf(linePartial) == 0 });
 	if (c.domain) {
 		// Call local completer
 		completions = c.domain.completer( linePartial )[0];
-		// Call global completer
-		completions = completions.concat( c.gdomain.completer( linePartial )[0] );
-		callback(null, [completions, linePartial]);
-		return true;
 	}
-	// show all completions if none found
-	callback(null, [hits.length ? hits : completions, linePartial]);
-}
+	// Call global completer
+	completions = completions.concat( c.gdomain.completer( linePartial )[0] );
+	callback(null, [completions, linePartial]);
+	return true;
+};
 
 c.onLine = function(line) {
 	line = line.trim();
-	var processed = false;
+	let processed = false;
 	
 	if (c.domain) {
 		processed = c.domain.process( line );
@@ -78,6 +74,7 @@ c.onLine = function(line) {
 		switch(line.trim()) {
 			case 'go':
 				console.log('Go where?');
+				break;
 			case 'go base':
 				c.domain = new BaseDomain( root, base );
 				break;
@@ -95,6 +92,6 @@ c.onLine = function(line) {
 	if (!processed) {
 		console.log('Say what? I might have heard `' + line.trim() + '`');
 	}
-}
+};
 
 module.exports = c;

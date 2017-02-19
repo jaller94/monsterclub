@@ -8,7 +8,7 @@ const rl = readline.createInterface(process.stdin, process.stdout, gm.completer)
 rl.setPrompt(gm.domain.getShortName() + '> ');
 rl.prompt();
 
-var domain = 'Base';
+const domain = 'Base';
 
 rl.on('line', (line) => {
 	gm.onLine(line);

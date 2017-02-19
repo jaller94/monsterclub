@@ -2,12 +2,33 @@
 	"dungeons": [
 		{
 			"name": "Tiny Woods",
-			"name-de": "Kleinhein",
+			"name-de": "Kleinhain",
 			"floors": 3,
 			"monsters": [
 				{
 					"name": "Pidgey",
 					"levelmin": 1,
+					"levelmax": 3,
+					"floormin": 1,
+					"floormax": 3
+				},
+				{
+					"name": "Sunkern",
+					"levelmin": 1,
+					"levelmax": 3,
+					"floormin": 1,
+					"floormax": 3
+				},
+				{
+					"name": "Wurmple",
+					"levelmin": 1,
+					"levelmax": 3,
+					"floormin": 1,
+					"floormax": 3
+				},
+				{
+					"name": "Exeggcute",
+					"levelmin": 3,
 					"levelmax": 3,
 					"floormin": 1,
 					"floormax": 3

@@ -34,6 +34,33 @@
 				{"level": 39, "name": "Agility"},
 				{"level": 47, "name": "Mirror Move"}
 			]
+		},
+		{
+			"no": 90,
+			"name": "Exeggcute",
+			"name-de": "Owei",
+			"size": 1,
+			"recruitrate": 0,
+			"moves": [
+			]
+		},
+		{
+			"no": 191,
+			"name": "Sunkern",
+			"name-de": "Sonnkern",
+			"size": 1,
+			"recruitrate": 0,
+			"moves": [
+			]
+		},
+		{
+			"no": 265,
+			"name": "Wurmple",
+			"name-de": "Waumple",
+			"size": 1,
+			"recruitrate": 0,
+			"moves": [
+			]
 		}
 	]
 }

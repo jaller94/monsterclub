@@ -13,7 +13,7 @@ class DebugDomain extends Domain {
 	}
 
 	process( line ) {
-		var args = Domain.parseArgs(line);
+		const args = Domain.parseArgs(line);
 		switch(args[0]) {
 			case 'dungeons':
 				console.log( this.world.dungeons );
@@ -26,8 +26,8 @@ class DebugDomain extends Domain {
 	}
 
 	completer( line ) {
-		var completions = 'dungeons monsterclasses'.split(' ');
-		var hits = completions.filter((c) => { return c.indexOf(line) == 0 });
+		const completions = 'dungeons monsterclasses'.split(' ');
+		const hits = completions.filter((c) => { return c.indexOf(line) == 0 });
 		// show all completions if none found
 		return [hits, line];
 	}
